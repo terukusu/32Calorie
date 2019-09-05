@@ -22,11 +22,20 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
     private static final String FIRST_LAUNDH = "first_launch";
-    
+
+    private static final int[] TYPE_ICON = {
+            R.drawable.morning,
+            R.drawable.lunch,
+            R.drawable.snack,
+            R.drawable.dinner,
+            R.drawable.other
+    };
+
     private MultiBar mMultiBar;
     private CalorieDAO mCalorieDAO;
     private List<CalorieInfo> mCalorieInfoList;
@@ -58,7 +67,7 @@ public class MainActivity extends Activity {
     			
     			TextView t = (TextView)mTypeAreaViewList.get(index).findViewById(R.id.type_value);
     			t.setText("" + value + " cal");
-    			
+
     			setSummary();
     		}
     	});
@@ -196,6 +205,10 @@ public class MainActivity extends Activity {
             
             View incButton = view.findViewById(R.id.inc_button);
             incButton.setOnTouchListener(new OnButtonListener(mHandler, i, 10, 30));
+
+            ImageView iconImage = view.findViewById(R.id.type_icon);
+            iconImage.setImageResource(TYPE_ICON[ci.getType()]);
+
             parent.addView(view);
             
             mTypeAreaViewList.add(view);
