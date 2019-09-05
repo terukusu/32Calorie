@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
     			c.setValue(value);
     			
     			TextView t = (TextView)mTypeAreaViewList.get(index).findViewById(R.id.type_value);
-    			t.setText("" + value + " cal");
+    			t.setText("" + value + " kcal");
 
     			setSummary();
     		}
@@ -198,7 +198,7 @@ public class MainActivity extends Activity {
             t.setText(getString(ci.getName()));
             
             t = (TextView)view.findViewById(R.id.type_value);
-            t.setText(ci.getValue() + " cal");
+            t.setText(ci.getValue() + " kcal");
             
             View decButton = view.findViewById(R.id.dec_button);
             decButton.setOnTouchListener(new OnButtonListener(mHandler, i, -10, 30));
@@ -220,11 +220,11 @@ public class MainActivity extends Activity {
         TextView t;
         
         t = (TextView)findViewById(R.id.total_text);
-        t.setText(getString(R.string.summary_total) + " " + totalValue + " cal");
+        t.setText(getString(R.string.summary_total) + " " + totalValue + " kcal");
         
         int remain = mMultiBar.getTarget() - totalValue;
         t = (TextView)findViewById(R.id.remain_text);
-        t.setText(getString(R.string.summary_remain) + " " + remain + " cal");
+        t.setText(getString(R.string.summary_remain) + " " + remain + " kcal");
         
         t.setTextColor(CalorieBarBuilder.getRemainColor(remain, this));
     }
