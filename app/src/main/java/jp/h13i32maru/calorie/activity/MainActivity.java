@@ -12,6 +12,8 @@ import jp.h13i32maru.calorie.model.Pref;
 import jp.h13i32maru.calorie.multibar.MultiBar;
 import jp.h13i32maru.calorie.widget.CalorieWidget;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String FIRST_LAUNDH = "first_launch";
@@ -43,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private List<View> mTypeAreaViewList = new ArrayList<View>();
     private int mSelectedCalorie = -1;
     private Handler mHandler;
-    
+
+    private View mFab1;
+    private View mFab2;
+    private View mFab3;
+    private View mFab4;
+    private View mFabMask;
+    private boolean mIsFabOpen = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         CalorieBarBuilder.loadData(mMultiBar, mCalorieInfoList);
         
         initCategoryArea();
+        initFabMenu();
         setSummary();
 
         mMultiBar.setOnProgressListener(new MultiBar.OnProgressListener() {
@@ -94,7 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        
+
+
+
         Pref pref = Pref.getInstance(this);
         if(pref.getBoolean(FIRST_LAUNDH, true)){
             pref.putBoolean(FIRST_LAUNDH, false);
@@ -102,7 +116,132 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    
+
+    private void initFabMenu() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab1 = findViewById(R.id.fab1);
+        mFab2 = findViewById(R.id.fab2);
+        mFab3 = findViewById(R.id.fab3);
+        mFab4 = findViewById(R.id.fab4);
+        mFabMask = findViewById(R.id.fab_mask);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!mIsFabOpen){
+                    showFabMenu();
+                }else{
+                    closeFabMenu();
+                }
+            }
+        });
+
+        // Clear button listener
+        ((FloatingActionButton)findViewById(R.id.fab1_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mIsFabOpen) {
+                    return;
+                }
+                closeFabMenu();
+                mCalorieDAO.update(mCalorieInfoList);
+                mCalorieInfoList = mCalorieDAO.createNew();
+                CalorieBarBuilder.loadData(mMultiBar, mCalorieInfoList);
+                initCategoryArea();
+                setSummary();
+            }
+        });
+
+        // LineChart button listener
+        ((FloatingActionButton)findViewById(R.id.fab2_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mIsFabOpen) {
+                    return;
+                }
+                closeFabMenu();
+                Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Setting button listener
+        ((FloatingActionButton)findViewById(R.id.fab3_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mIsFabOpen) {
+                    return;
+                }
+                closeFabMenu();
+                Intent intent = new Intent(MainActivity.this, ConfigActivity.class);
+                startActivityForResult(intent, C.req.config);
+            }
+        });
+
+        // Help button listener
+        ((FloatingActionButton)findViewById(R.id.fab4_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mIsFabOpen) {
+                    return;
+                }
+                closeFabMenu();
+                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void showFabMenu(){
+        mIsFabOpen=true;
+        mFabMask.setVisibility(View.VISIBLE);
+        mFab1.setVisibility(View.VISIBLE);
+        mFab1.animate().translationY(-getResources().getDimension(R.dimen.fab1_dim)).setDuration(100).setListener(null);
+
+        mFab2.setVisibility(View.VISIBLE);
+        mFab2.animate().translationY(-getResources().getDimension(R.dimen.fab2_dim)).setDuration(100).setListener(null);
+
+        mFab3.setVisibility(View.VISIBLE);
+        mFab3.animate().translationY(-getResources().getDimension(R.dimen.fab3_dim)).setDuration(100).setListener(null);
+
+        mFab4.setVisibility(View.VISIBLE);
+        mFab4.animate().translationY(-getResources().getDimension(R.dimen.fab4_dim)).setDuration(100).setListener(null);
+    }
+
+    private void closeFabMenu(){
+        mIsFabOpen=false;
+
+        mFab1.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFab1.setVisibility(View.GONE);
+            }
+        });
+
+        mFab2.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFab2.setVisibility(View.GONE);
+            }
+        });
+
+        mFab3.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFab3.setVisibility(View.GONE);
+            }
+        });
+
+        mFab4.animate().translationY(0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFab4.setVisibility(View.GONE);
+            }
+        });
+
+        mFabMask.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onPause(){
         super.onPause();
@@ -119,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
     	case C.req.config:
     		CalorieBarBuilder.loadConfig(mMultiBar);
     		initCategoryArea();
+    		setSummary();
     		break;
     	}
     }

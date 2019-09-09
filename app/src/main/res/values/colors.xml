@@ -33,4 +33,7 @@
     <drawable name="chart_axis_label">#4d3d32</drawable>
     <drawable name="chart_default_user_line">#ff4444</drawable>
     <drawable name="summary_selected">#80634a</drawable>
+    <color name="fab_bg">#ddd6ae</color>
+    <color name="fab_text">#FFFFFF</color>
+    <color name="fab_mask">#99000000</color>
 </resources>

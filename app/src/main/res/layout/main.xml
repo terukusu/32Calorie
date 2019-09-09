@@ -1,67 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:multibar="http://schemas.android.com/apk/res/jp.h13i32maru.calorie"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/background">
-  
-  <include layout="@layout/title"/>
-  
-  <LinearLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:multibar="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginLeft="14dp"
-    android:layout_marginRight="14dp"
-    android:layout_marginTop="8dp">
-    
-        <jp.h13i32maru.calorie.multibar.MultiBar
-        android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+
+        <include layout="@layout/title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="14dp"
+            android:orientation="vertical">
+
+            <jp.h13i32maru.calorie.multibar.MultiBar
+                android:id="@+id/multi_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                multibar:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/summary_bg"
+                android:orientation="horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:id="@+id/total_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="#4d3d32"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#4d3d32" />
+
+                <TextView
+                    android:id="@+id/remain_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#4d3d32"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/category_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fab_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fab_mask"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/fab4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        multibar:textSize="12sp"
-        android:id="@+id/multi_bar"/>
-  
-	  <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/summary_bg"
-	    android:orientation="horizontal"
-	    android:paddingTop="2dp"
-	    android:paddingBottom="2dp"
-	    android:layout_marginTop="12dp"
-	    android:id="@+id/summary">
-	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:textColor="#4d3d32"
-	            android:textStyle="bold"
-	            android:layout_weight="1"
-	            android:gravity="center"
-	            android:paddingTop="8dp"
-	            android:paddingBottom="8dp"
-	            android:id="@+id/total_text"/>
-	        <LinearLayout
-	            android:layout_width="1dp"
-	            android:layout_height="match_parent"
-	            android:background="#4d3d32">
-	        </LinearLayout>
-	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:textColor="#4d3d32"
-	            android:textStyle="bold"
-	            android:layout_weight="1"
-	            android:gravity="center"
-	            android:id="@+id/remain_text"/>
-	  </LinearLayout>
- </LinearLayout> 
-  
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/category_area"
-    android:orientation="vertical"/>
-    
-</LinearLayout>
+        android:layout_gravity="end|bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_help"
+            android:textColor="@color/fab_text"
+            android:textSize="18dp"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab4_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="13dp"
+            app:fabCustomSize="45dp"
+            app:backgroundTint="@color/fab_bg"
+            app:srcCompat="@android:drawable/ic_menu_help" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fab3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_settings"
+            android:textColor="@color/fab_text"
+            android:textSize="18dp"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab3_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="13dp"
+            app:fabCustomSize="45dp"
+            app:backgroundTint="@color/fab_bg"
+            app:srcCompat="@android:drawable/ic_menu_preferences" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_line_chart"
+            android:textColor="@color/fab_text"
+            android:textSize="18dp"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="13dp"
+            app:fabCustomSize="45dp"
+            app:backgroundTint="@color/fab_bg"
+            app:srcCompat="@android:drawable/ic_menu_more" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_clear"
+            android:textColor="@color/fab_text"
+            android:textSize="18dp"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="13dp"
+            app:fabCustomSize="45dp"
+            app:backgroundTint="@color/fab_bg"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        app:backgroundTint="@color/fab_bg"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
+</FrameLayout>
