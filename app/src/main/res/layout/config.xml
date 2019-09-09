@@ -33,7 +33,8 @@
              android:layout_width="100dp"
              android:layout_height="wrap_content"
              android:id="@+id/target"
-             android:inputType="number"/>
+             android:inputType="number"
+			 android:background="#D5CF9C" />
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -50,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:minEms="4"
                 android:id="@+id/max"
-                android:inputType="number"/>
+                android:inputType="number"
+				android:background="#D5CF9C" />
     </TableRow>
 </TableLayout>
     
@@ -79,7 +81,8 @@
 	                android:layout_width="100dp"
 	                android:layout_height="wrap_content"
 	                android:id="@+id/widget_background"
-	                android:layout_gravity="right"/>
+					android:background="#D5CF9C"
+					android:layout_gravity="right"/>
 	    </TableRow>
 	    <TableRow
             android:layout_width="match_parent"
@@ -95,7 +98,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/widget_one_color"
-                    android:layout_gravity="right"/>
+					android:background="#D5CF9C"
+					android:layout_gravity="right"/>
         </TableRow>
     </TableLayout>   
 </LinearLayout>

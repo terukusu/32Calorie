@@ -7,15 +7,15 @@
     android:label="@string/app_name">
     
     <activity android:name=".activity.MainActivity"
-              android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar">
+              android:label="@string/app_name" android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
    
-    <activity android:name=".activity.LineChartActivity" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar"></activity>
-    <activity android:name=".activity.ConfigActivity" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name=".activity.LineChartActivity" android:label="@string/app_name" android:theme="@style/AppTheme"></activity>
+    <activity android:name=".activity.ConfigActivity" android:label="@string/app_name" android:theme="@style/AppTheme"></activity>
     <activity android:name=".activity.HelpActivity" android:theme="@style/Theme.Help" android:label="@string/app_name"></activity>
 
     <receiver android:name=".widget.CalorieWidget" >
