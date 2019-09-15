@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Clear button listener
+        // Help button listener
         ((FloatingActionButton)findViewById(R.id.fab1_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,11 +144,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 closeFabMenu();
-                mCalorieDAO.update(mCalorieInfoList);
-                mCalorieInfoList = mCalorieDAO.createNew();
-                CalorieBarBuilder.loadData(mMultiBar, mCalorieInfoList);
-                initCategoryArea();
-                setSummary();
+                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -178,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Help button listener
+        // Clear button listener
         ((FloatingActionButton)findViewById(R.id.fab4_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,8 +183,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 closeFabMenu();
-                Intent intent = new Intent(MainActivity.this, HelpActivity.class);
-                startActivity(intent);
+                mCalorieDAO.update(mCalorieInfoList);
+                mCalorieInfoList = mCalorieDAO.createNew();
+                CalorieBarBuilder.loadData(mMultiBar, mCalorieInfoList);
+                initCategoryArea();
+                setSummary();
             }
         });
     }

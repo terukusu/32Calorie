@@ -91,7 +91,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_help"
+            android:text="@string/menu_clear"
             android:textColor="@color/fab_text"
             android:textSize="18dp"
             android:layout_gravity="center" />
@@ -103,7 +103,7 @@
             android:layout_margin="13dp"
             app:fabCustomSize="45dp"
             app:backgroundTint="@color/fab_bg"
-            app:srcCompat="@android:drawable/ic_menu_help" />
+            app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 
     <LinearLayout
@@ -169,7 +169,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_clear"
+            android:text="@string/menu_help"
             android:textColor="@color/fab_text"
             android:textSize="18dp"
             android:layout_gravity="center" />
@@ -181,7 +181,7 @@
             android:layout_margin="13dp"
             app:fabCustomSize="45dp"
             app:backgroundTint="@color/fab_bg"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
+            app:srcCompat="@android:drawable/ic_menu_help" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
